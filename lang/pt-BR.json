@@ -1,0 +1,91 @@
+{
+ "ARC": {
+  "Ability": {
+   "Str": { "long": "Força", "abbr": "for" },
+   "Con": { "long": "Constituição", "abbr": "con" },
+   "Dex": { "long": "Destreza", "abbr": "des" },
+   "Int": { "long": "Inteligência", "abbr": "int" },
+   "Wis": { "long": "Sabedoria", "abbr": "sab" },
+   "Cha": { "long": "Carisma", "abbr": "car" }
+  },
+  "SheetLabels": {
+   "Actor": "Ficha de Personagem Arcana",
+   "Item": "Ficha de Item Arcana"
+  },
+  "Actor": {
+   "Tabs": {
+    "Biography": "Biografia",
+    "Features": "Características",
+    "Gear": "Equipamento",
+    "Spells": "Magias",
+    "Effects": "Efeitos"
+   },
+   "base": {
+    "FIELDS": {
+     "biography": {"label": "Biografia"},
+     "health": {
+      "value": {"label": "Vida"},
+      "max": {"label": "Vida Máxima"}
+     },
+     "power": {
+      "value": {"label": "Poder"},
+      "max": {"label": "Poder Máximo"}
+     }
+    }
+   },
+   "Character": {
+    "FIELDS": {
+     "attributes.level.value": {"label": "Nível"}
+    }
+   },
+   "NPC": {
+    "FIELDS": {
+     "cr": {"label": "ND"}
+    },
+    "xp": {"label": "XP"}
+   }
+  },
+  "Item": {
+   "Tabs": {
+    "Attributes": "Atributos",
+    "Description": "Descrição",
+    "Effects": "Efeitos"
+   },
+   "Gear": {
+    "FIELDS": {
+     "rollFormula": {"label": "Fórmula de Rolagem"},
+     "numDice": {"label": "Número de Dados"},
+     "dieSize": {"label": "Tipo de Dado"},
+     "rollMod": {"label": "Modificador de Rolagem"},
+     "quantity": {"label": "Quantidade"},
+     "weight": {"label": "Peso"}
+    }
+   },
+   "Spell": {
+    "FIELDS": {
+     "level": {"label": "Nível da Magia"}
+    },
+    "SpellLVL": "Magias de Nível {level}",
+    "AddLVL": "Adicionar Nível {level}"
+   }
+  },
+  "Effect": {
+   "Source": "Origem",
+   "Toggle": "Alternar Efeito",
+   "Temporary": "Efeitos Temporários",
+   "Passive": "Efeitos Passivos",
+   "Inactive": "Efeitos Inativos"
+  }
+ },
+ "TYPES": {
+  "Actor": {
+   "character": "Personagem",
+   "npc": "NPC"
+  },
+  "Item": {
+   "gear": "Equipamento",
+   "feature": "Característica",
+   "spell": "Magia"
+  }
+ }
+}
