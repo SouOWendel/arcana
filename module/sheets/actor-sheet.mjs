@@ -6,7 +6,7 @@ const { api, sheets } = foundry.applications;
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheetV2}
  */
-export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
+export class arcanaActorSheet extends api.HandlebarsApplicationMixin(
   sheets.ActorSheetV2
 ) {
   constructor(options = {}) {
@@ -16,7 +16,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
 
   /** @override */
   static DEFAULT_OPTIONS = {
-    classes: ['boilerplate', 'actor'],
+    classes: ['arcana', 'actor'],
     position: {
       width: 600,
       height: 600,
@@ -39,26 +39,29 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
   /** @override */
   static PARTS = {
     header: {
-      template: 'systems/boilerplate/templates/actor/header.hbs',
+      template: 'systems/arcana/templates/actor/header.hbs',
     },
     tabs: {
       // Foundry-provided generic template
       template: 'templates/generic/tab-navigation.hbs',
     },
+		skills: {
+      template: 'systems/arcana/templates/actor/skills.hbs',
+    },
     features: {
-      template: 'systems/boilerplate/templates/actor/features.hbs',
+      template: 'systems/arcana/templates/actor/features.hbs',
     },
     biography: {
-      template: 'systems/boilerplate/templates/actor/biography.hbs',
+      template: 'systems/arcana/templates/actor/biography.hbs',
     },
     gear: {
-      template: 'systems/boilerplate/templates/actor/gear.hbs',
+      template: 'systems/arcana/templates/actor/gear.hbs',
     },
     spells: {
-      template: 'systems/boilerplate/templates/actor/spells.hbs',
+      template: 'systems/arcana/templates/actor/spells.hbs',
     },
     effects: {
-      template: 'systems/boilerplate/templates/actor/effects.hbs',
+      template: 'systems/arcana/templates/actor/effects.hbs',
     },
   };
 
@@ -72,7 +75,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
     // Control which parts show based on document subtype
     switch (this.document.type) {
       case 'character':
-        options.parts.push('features', 'gear', 'spells', 'effects');
+        options.parts.push('skills', 'features', 'gear', 'spells', 'effects');
         break;
       case 'npc':
         options.parts.push('gear', 'effects');
@@ -95,9 +98,12 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
       // Add the actor's data to context.data for easier access, as well as flags.
       system: this.actor.system,
       flags: this.actor.flags,
-      // Adding a pointer to CONFIG.BOILERPLATE
-      config: CONFIG.BOILERPLATE,
+      // Adding a pointer to CONFIG.ARC
+      config: CONFIG.ARC,
       tabs: this._getTabs(options.parts),
+      // Necessary for formInput and formFields helpers
+      fields: this.document.schema.fields,
+      systemFields: this.document.system.schema.fields,
     };
 
     // Offloading context prep to a helper function
@@ -109,6 +115,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
   /** @override */
   async _preparePartContext(partId, context) {
     switch (partId) {
+			case 'skills':
       case 'features':
       case 'spells':
       case 'gear':
@@ -163,12 +170,16 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
         // FontAwesome Icon, if you so choose
         icon: '',
         // Run through localization
-        label: 'BOILERPLATE.Actor.Tabs.',
+        label: 'ARC.Actor.Tabs.',
       };
       switch (partId) {
         case 'header':
         case 'tabs':
           return tabs;
+				case 'skills':
+          tab.id = 'skills';
+          tab.label += 'Skills';
+          break;
         case 'biography':
           tab.id = 'biography';
           tab.label += 'Biography';
@@ -214,11 +225,6 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
       2: [],
       3: [],
       4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
-      9: [],
     };
 
     // Iterate through items, allocating to containers
@@ -274,7 +280,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
   /**
    * Handle changing a Document's image.
    *
-   * @this BoilerplateActorSheet
+   * @this arcanaActorSheet
    * @param {PointerEvent} event   The originating click event
    * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
    * @returns {Promise}
@@ -302,7 +308,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
   /**
    * Renders an embedded document's sheet
    *
-   * @this BoilerplateActorSheet
+   * @this arcanaActorSheet
    * @param {PointerEvent} event   The originating click event
    * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
    * @protected
@@ -315,7 +321,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
   /**
    * Handles item deletion
    *
-   * @this BoilerplateActorSheet
+   * @this arcanaActorSheet
    * @param {PointerEvent} event   The originating click event
    * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
    * @protected
@@ -328,7 +334,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
   /**
    * Handle creating a new Owned Item or ActiveEffect for the actor using initial data defined in the HTML dataset
    *
-   * @this BoilerplateActorSheet
+   * @this arcanaActorSheet
    * @param {PointerEvent} event   The originating click event
    * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
    * @private
@@ -361,7 +367,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
   /**
    * Determines effect parent to pass to helper
    *
-   * @this BoilerplateActorSheet
+   * @this arcanaActorSheet
    * @param {PointerEvent} event   The originating click event
    * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
    * @private
@@ -374,7 +380,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
   /**
    * Handle clickable rolls.
    *
-   * @this BoilerplateActorSheet
+   * @this arcanaActorSheet
    * @param {PointerEvent} event   The originating click event
    * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
    * @protected
@@ -391,8 +397,32 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
     }
 
     // Handle rolls that supply the formula directly.
-    if (dataset.roll) {
+    if (dataset.roll && dataset.type == 'ability') {
       let label = dataset.label ? `[ability] ${dataset.label}` : '';
+			let ability = this.actor.system.abilities[dataset.key];
+      let roll = new Roll(dataset.roll, this.actor.getRollData());
+
+			roll.dice[0].modifiers.findSplice(m => ['kh', 'kl'].includes(m));
+			if (ability.value >= 3) {
+				roll.dice[0].modifiers.push('kh');
+				roll.dice[0].number = 2;
+				roll.resetFormula();
+			} else if (ability.value <= 0) {
+				roll.dice[0].modifiers.push('kl');
+				roll.dice[0].number = 2;
+			}
+
+      await roll.toMessage({
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        flavor: label,
+        rollMode: game.settings.get('core', 'rollMode'),
+      });
+      return roll;
+    }
+		
+		// Handle rolls that supply the formula directly.
+    if (dataset.roll && dataset.type == 'skill') {
+      let label = dataset.label ? `[skill] ${dataset.label}` : '';
       let roll = new Roll(dataset.roll, this.actor.getRollData());
       await roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
@@ -401,6 +431,7 @@ export class BoilerplateActorSheet extends api.HandlebarsApplicationMixin(
       });
       return roll;
     }
+
   }
 
   /** Helper Functions */
