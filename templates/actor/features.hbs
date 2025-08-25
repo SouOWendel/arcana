@@ -16,6 +16,8 @@
               class='resource-label rollable flexlarge align-left'
               data-action='roll'
               data-roll='d20+@abilities.{{key}}.mod'
+							data-type='ability'
+							data-key='{{key}}'
               data-label='{{localize (lookup @root.config.abilities key)}}'
             >{{localize (lookup @root.config.abilities key)}}</label>
             <input
@@ -29,6 +31,8 @@
               class='ability-mod rollable'
               data-action='roll'
               data-roll='d20+@abilities.{{key}}.mod'
+							data-type='ability'
+							data-key='{{key}}'
               data-label='{{localize (lookup @root.config.abilities key)}}'
             >{{numberFormat ability.mod decimals=0 sign=true}}</span>
           </div>
