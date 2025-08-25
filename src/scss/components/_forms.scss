@@ -49,3 +49,14 @@
     padding: 0 8px;
   }
 }
+
+.skills {
+
+	.grid-skills {
+		display: grid;
+		overflow: auto;
+		column-count: 2;
+		height: 340px;
+		gap: 0px;
+	}
+}

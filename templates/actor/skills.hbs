@@ -1,0 +1,29 @@
+{{! Features Tab }}
+<section
+  class='tab skills flexcol {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='skills'
+>
+  <section class='grid-skills grid-2col'>
+        {{#each system.skills as |skill key|}}
+          <div class='skill flexrow flex-group-center'>
+						<input type="checkbox" name="system.skills.{{key}}.trained" {{checked skill.trained}}>
+            <label
+              class='resource-label rollable flexlarge align-left'
+              data-action='roll'
+              data-roll='d20+@skills.{{key}}.mod'
+							data-type='skill'
+              data-label='{{localize (lookup (lookup @root.config.skills key) "label")}}'
+            >{{localize (lookup (lookup @root.config.skills key) "label")}}</label>
+            
+            <span
+              class='skill-mod rollable'
+              data-action='roll'
+              data-roll='d20+@skills.{{key}}.mod'
+							data-type='skill'
+              data-label='{{localize (lookup (lookup @root.config.skills key) "label")}}'
+            >{{numberFormat skill.mod decimals=0 sign=true}}</span>
+          </div>
+        {{/each}}
+	</section>
+</section>
