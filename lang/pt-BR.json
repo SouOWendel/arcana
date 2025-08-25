@@ -1,19 +1,49 @@
 {
  "ARC": {
   "Ability": {
-   "Str": { "long": "Força", "abbr": "for" },
-   "Con": { "long": "Constituição", "abbr": "con" },
-   "Dex": { "long": "Destreza", "abbr": "des" },
-   "Int": { "long": "Inteligência", "abbr": "int" },
-   "Wis": { "long": "Sabedoria", "abbr": "sab" },
-   "Cha": { "long": "Carisma", "abbr": "car" }
-  },
+		"Aura": { "long": "Aura", "abbr": "aura" },
+		"Dext": { "long": "Destreza", "abbr": "dest" },
+		"Inte": { "long": "Intelecto", "abbr": "inte" },
+		"Stre": { "long": "Força", "abbr": "forc" },
+		"Tena": { "long": "Tenacidade", "abbr": "tena" }
+	},
+	"Skill": {
+    "acrobatics": "Acrobacia",
+    "animalHandling": "Adestramento",
+    "arcanism": "Arcanismo",
+    "arts": "Artes",
+    "athletics": "Atletismo",
+    "sciences": "Ciências",
+    "knowledge": "Conhecimento",
+    "determination": "Determinação",
+    "diplomacy": "Diplomacia",
+    "deception": "Enganação",
+    "fortitude": "Fortitude",
+    "stealth": "Furtividade",
+    "initiative": "Iniciativa",
+    "intimidation": "Intimidação",
+    "intuition": "Intuição",
+    "investigation": "Investigação",
+    "thievery": "Ladinagem",
+    "fight": "Luta",
+    "medicine": "Medicina",
+    "craft": "Ofício",
+    "perception": "Percepção",
+    "piloting": "Pilotagem",
+    "marksmanship": "Pontaria",
+    "reflexes": "Reflexos",
+    "religion": "Religião",
+    "survival": "Sobrevivência",
+    "tactics": "Tática",
+    "technology": "Tecnologia"
+	},
   "SheetLabels": {
    "Actor": "Ficha de Personagem Arcana",
    "Item": "Ficha de Item Arcana"
   },
   "Actor": {
    "Tabs": {
+		"Skills": "Perícias",
     "Biography": "Biografia",
     "Features": "Características",
     "Gear": "Equipamento",
@@ -27,9 +57,13 @@
       "value": {"label": "Vida"},
       "max": {"label": "Vida Máxima"}
      },
-     "power": {
-      "value": {"label": "Poder"},
-      "max": {"label": "Poder Máximo"}
+     "mana": {
+      "value": {"label": "Mana"},
+      "max": {"label": "Mana Máximo"}
+     },
+		 "stamina": {
+      "value": {"label": "Estamina"},
+      "max": {"label": "Estamina Máximo"}
      }
     }
    },

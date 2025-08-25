@@ -1,19 +1,49 @@
 {
   "ARC": {
     "Ability": {
-      "Str": { "long": "Strength", "abbr": "str" },
-      "Con": { "long": "Constitution", "abbr": "con" },
-      "Dex": { "long": "Dexterity", "abbr": "dex" },
-      "Int": { "long": "Intelligence", "abbr": "int" },
-      "Wis": { "long": "Wisdom", "abbr": "wis" },
-      "Cha": { "long": "Charisma", "abbr": "cha" }
+      "Aura": { "long": "Aura", "abbr": "aura" },
+      "Dext": { "long": "Dexterity", "abbr": "dext" },
+      "Inte": { "long": "Inte", "abbr": "inte" },
+      "Stre": { "long": "Strength", "abbr": "stre" },
+      "Tena": { "long": "Tenacity", "abbr": "tena" }
     },
+		"Skill": {
+			"acrobatics": "Acrobatics",
+			"animalHandling": "Animal Handling",
+			"arcanism": "Arcanism",
+			"arts": "Arts",
+			"athletics": "Athletics",
+			"sciences": "Sciences",
+			"knowledge": "Knowledge",
+			"determination": "Determination",
+			"diplomacy": "Diplomacy",
+			"deception": "Deception",
+			"fortitude": "Fortitude",
+			"stealth": "Stealth",
+			"initiative": "Initiative",
+			"intimidation": "Intimidation",
+			"intuition": "Intuition",
+			"investigation": "Investigation",
+			"thievery": "Thievery",
+			"fight": "Fight",
+			"medicine": "Medicine",
+			"craft": "Craft",
+			"perception": "Perception",
+			"piloting": "Piloting",
+			"marksmanship": "Marksmanship",
+			"reflexes": "Reflexes",
+			"religion": "Religion",
+			"survival": "Survival",
+			"tactics": "Tactics",
+			"technology": "Technology"
+		},
     "SheetLabels": {
       "Actor": "arcana Actor Sheet",
       "Item": "arcana Item Sheet"
     },
     "Actor": {
       "Tabs": {
+				"Skills": "Skills",
         "Biography": "Biography",
         "Features": "Features",
         "Gear": "Gear",
@@ -27,9 +57,13 @@
             "value": {"label": "Health"},
             "max": {"label": "Maximum Health"}
           },
-          "power": {
-            "value": {"label": "Power"},
-            "max": {"label": "Maximum Power"}
+          "mana": {
+            "value": {"label": "Mana"},
+            "max": {"label": "Maximum Mana"}
+          },
+					"stamina": {
+            "value": {"label": "Stamina"},
+            "max": {"label": "Maximum Stamina"}
           }
         }
       },
